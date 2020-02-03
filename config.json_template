@@ -1,0 +1,9 @@
+{
+  "bitmax": {
+    "https": "https://bitmax-test.io",
+    "wss": "wss://bitmax-test.io:443",
+    "group": 0,
+    "apikey": "<your-api-key>",
+    "secret": "<your-api-secret>"
+  }
+}
