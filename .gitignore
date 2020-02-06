@@ -2,5 +2,5 @@
 __pycache__/
 python-bk/
 *.pyc
-config*.json
+*.json
 workbench.sh
