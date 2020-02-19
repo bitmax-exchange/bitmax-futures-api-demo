@@ -15,10 +15,15 @@ from util import *
 @click.option("--qty", type=str, default='0.1')
 @click.option("--order-type", type=str, default="limit")
 @click.option("--side", type=click.Choice(['buy', 'sell']), default='buy')
+@click.option("--time-in-force", type=click.Choice(['GTC', 'IOC', 'IOO']), default="GTC")
 @click.option("--resp-inst", type=click.Choice(['ACK', 'ACCEPT', 'DONE']), default="ACCEPT")
 @click.option("--time-in-force", type=click.Choice(['GTC', 'IOC', 'IOO']), default="GTC")
 @click.option('--verbose/--no-verbose', default=False)
+<<<<<<< HEAD
 def run(config, symbol, price, qty, order_type, side, resp_inst, time_in_force, verbose):
+=======
+def run(config, symbol, price, qty, order_type, side, time_in_force, resp_inst, verbose):
+>>>>>>> f8ce177db698aaa146577d14377c2b48dadb85cd
     if config is None:
         config = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.json")
         print(f"Config file is not specified, use {config}")
