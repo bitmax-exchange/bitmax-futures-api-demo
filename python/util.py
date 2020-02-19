@@ -17,6 +17,13 @@ def load_config(fname):
         return json.load(config_file)
 
 
+def get_config_or_default(config):
+    if config is None:
+        config = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.json")
+        print(f"Config file is not specified, use {config}")
+    return config
+
+
 def uuid32():
     return ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(32))
 

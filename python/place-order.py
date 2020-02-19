@@ -17,22 +17,15 @@ from util import *
 @click.option("--side", type=click.Choice(['buy', 'sell']), default='buy')
 @click.option("--time-in-force", type=click.Choice(['GTC', 'IOC', 'IOO']), default="GTC")
 @click.option("--resp-inst", type=click.Choice(['ACK', 'ACCEPT', 'DONE']), default="ACCEPT")
-@click.option("--time-in-force", type=click.Choice(['GTC', 'IOC', 'IOO']), default="GTC")
 @click.option('--verbose/--no-verbose', default=False)
-<<<<<<< HEAD
-def run(config, symbol, price, qty, order_type, side, resp_inst, time_in_force, verbose):
-=======
 def run(config, symbol, price, qty, order_type, side, time_in_force, resp_inst, verbose):
->>>>>>> f8ce177db698aaa146577d14377c2b48dadb85cd
-    if config is None:
-        config = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.json")
-        print(f"Config file is not specified, use {config}")
-    btmx_cfg = load_config(config)['bitmax']
+    
+    cfg = load_config(get_config_or_default(config))['bitmax']
 
-    host = btmx_cfg['https']
-    group = btmx_cfg['group']
-    apikey = btmx_cfg['apikey']
-    secret = btmx_cfg['secret']
+    host = cfg['https']
+    group = cfg['group']
+    apikey = cfg['apikey']
+    secret = cfg['secret']
 
     url = f"{host}/{group}/api/pro/v1/futures/order"
 

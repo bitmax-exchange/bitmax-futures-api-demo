@@ -16,13 +16,13 @@ from util import *
 @click.option("--config", type=str, default="config.json", help="path to the config file")
 @click.option("--verbose/--no-verbose", default=False)
 def run(account, symbol, n, executed_only, config, verbose):
+    
+    cfg = load_config(get_config_or_default(config))['bitmax']
 
-    btmx_cfg = load_config(get_config_or_default(config))['bitmax']
-
-    host = btmx_cfg['https']
-    group = btmx_cfg['group']
-    apikey = btmx_cfg['apikey']
-    secret = btmx_cfg['secret']
+    host = cfg['https']
+    group = cfg['group']
+    apikey = cfg['apikey']
+    secret = cfg['secret']
 
     ts = utc_timestamp()
     headers = make_auth_headers(ts, "order/hist/current", apikey, secret)

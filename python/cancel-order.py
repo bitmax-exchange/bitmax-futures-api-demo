@@ -15,15 +15,13 @@ from util import *
 @click.option("--resp-inst", type=click.Choice(['ACK', 'ACCEPT', 'DONE']), default="ACCEPT")
 @click.option('--verbose/--no-verbose', default=False)
 def run(config, account, order_id, symbol, resp_inst, verbose):
-    if config is None:
-        config = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.json")
-        print(f"Config file is not specified, use {config}")
-    btmx_cfg = load_config(config)['bitmax']
+    
+    cfg = load_config(get_config_or_default(config))['bitmax']
 
-    host = btmx_cfg['https']
-    group = btmx_cfg['group']
-    apikey = btmx_cfg['apikey']
-    secret = btmx_cfg['secret']
+    host = cfg['https']
+    group = cfg['group']
+    apikey = cfg['apikey']
+    secret = cfg['secret']
 
     url = f"{host}/{group}/api/pro/futures/order"
     ts = utc_timestamp()
