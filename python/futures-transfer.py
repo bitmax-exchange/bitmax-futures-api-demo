@@ -15,10 +15,8 @@ from util import *
     help="Use deposit to transfer asset from cash account into futures account; use withdraw to transfer token from futures account into cash account")
 @click.option('--verbose/--no-verbose', default=False)
 def run(config, asset, amount, tx_type, verbose):
-    if config is None:
-        config = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.json")
-        print(f"Config file is not specified, use {config}")
-    cfg = load_config(config)['bitmax']
+    
+    cfg = load_config(get_config_or_default(config))['bitmax']
 
     host = cfg['https']
     grp = cfg['group']

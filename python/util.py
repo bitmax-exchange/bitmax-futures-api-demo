@@ -1,3 +1,4 @@
+import os
 import sys
 import json
 import time
@@ -15,6 +16,13 @@ def check_sys_version():
 def load_config(fname): 
     with open(fname, "r") as config_file:
         return json.load(config_file)
+
+
+def get_config_or_default(config):
+    if config is None or not os.path.isfile(config):
+        config = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.json")
+        print(f"Config file is not specified, use {config}")
+    return config
 
 
 def uuid32():

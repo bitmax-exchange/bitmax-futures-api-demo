@@ -16,18 +16,17 @@ from util import *
 @click.option("--order-type", type=str, default="limit")
 @click.option("--side", type=click.Choice(['buy', 'sell']), default='buy')
 @click.option("--time-in-force", type=click.Choice(['GTC', 'IOC', 'IOO']), default="GTC")
+@click.option("--reduce-only/--no-reduce-only", default=False)
 @click.option("--resp-inst", type=click.Choice(['ACK', 'ACCEPT', 'DONE']), default="ACCEPT")
 @click.option('--verbose/--no-verbose', default=False)
-def run(config, symbol, price, qty, order_type, side, time_in_force, resp_inst, verbose):
-    if config is None:
-        config = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.json")
-        print(f"Config file is not specified, use {config}")
-    btmx_cfg = load_config(config)['bitmax']
+def run(config, symbol, price, qty, order_type, side, time_in_force, reduce_only, resp_inst, verbose):
+    
+    cfg = load_config(get_config_or_default(config))['bitmax']
 
-    host = btmx_cfg['https']
-    group = btmx_cfg['group']
-    apikey = btmx_cfg['apikey']
-    secret = btmx_cfg['secret']
+    host = cfg['https']
+    group = cfg['group']
+    apikey = cfg['apikey']
+    secret = cfg['secret']
 
     url = f"{host}/{group}/api/pro/v1/futures/order"
 
@@ -41,6 +40,7 @@ def run(config, symbol, price, qty, order_type, side, time_in_force, resp_inst, 
         orderType = order_type,
         side = side.lower(),
         timeInForce = time_in_force,
+        reduceOnly = reduce_only,
         respInst = resp_inst,
     )
 

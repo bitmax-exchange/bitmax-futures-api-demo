@@ -14,10 +14,8 @@ from util import *
 @click.option("--size", type=str, default=None, help="value for the pageSize parameter")
 @click.option('--verbose/--no-verbose', default=False)
 def run(config, symbol, page, size, verbose):
-    if config is None:
-        config = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.json")
-        print(f"Config file is not specified, use {config}")
-    cfg = load_config(config)['bitmax']
+    
+    cfg = load_config(get_config_or_default(config))['bitmax']
 
     host = cfg['https']
     grp = cfg['group']
