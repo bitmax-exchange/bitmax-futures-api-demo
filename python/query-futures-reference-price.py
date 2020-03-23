@@ -11,7 +11,7 @@ from util import *
 @click.option("--config", type=str, default=None, help="path to the config file")
 @click.option('--verbose/--no-verbose', default=False)
 def run(config, verbose):
-    
+
     cfg = load_config(get_config_or_default(config))['bitmax']
 
     host = cfg['https']

@@ -11,24 +11,17 @@ from util import *
 @click.option("--config", type=str, default=None, help="path to the config file")
 @click.option('--verbose/--no-verbose', default=False)
 def run(config, verbose):
-
+    
     cfg = load_config(get_config_or_default(config))['bitmax']
 
     host = cfg['https']
-    grp = cfg['group']
-    apikey = cfg['apikey']
-    secret = cfg['secret']
 
-    url = f"{host}/{grp}/api/pro/v1/futures/risk"
-
-    ts = utc_timestamp()
-    headers = make_auth_headers(ts, "futures/risk", apikey, secret)
+    url = f"{host}/api/pro/v1/barhist/info"
 
     if verbose: 
         print(f"url = {url}")
-        print(f"params = {params}")
 
-    res = requests.get(url, headers=headers)
+    res = requests.get(url)
     pprint(parse_response(res))
 
 
