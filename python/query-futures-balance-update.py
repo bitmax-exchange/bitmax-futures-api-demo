@@ -9,9 +9,10 @@ from util import *
 
 @click.command()
 @click.option("--config", type=str, default=None, help="path to the config file")
-@click.option("--request-id", type=str, required=True)
+@click.option("--exec-id", type=int, required=False)
+@click.option("--request-id", type=str, required=False)
 @click.option('--verbose/--no-verbose', default=False)
-def run(config, request_id, verbose):
+def run(config, exec_id, request_id, verbose):
     
     cfg = load_config(get_config_or_default(config))['bitmax']
 
@@ -24,7 +25,7 @@ def run(config, request_id, verbose):
 
     ts = utc_timestamp()
     headers = make_auth_headers(ts, "futures/balance-update", apikey, secret)
-    params = dict(requestId = request_id)
+    params = dict(execId = exec_id, requestId = request_id)
 
     if verbose: 
         print(f"url = {url}")
