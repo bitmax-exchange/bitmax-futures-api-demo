@@ -23,7 +23,7 @@ def run(account, symbol, config, verbose):
 
     method = "order/all"
 
-    url = f"{host}/{group}/api/pro/{account}/order/all"
+    url = f"{host}/{group}/api/pro/v1/{account}/order/all"
 
     json = dict(symbol = symbol)
 
