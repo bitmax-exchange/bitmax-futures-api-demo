@@ -25,7 +25,7 @@ def run(account, symbol, config, verbose):
 
     url = f"{host}/{group}/api/pro/{account}/order/all"
 
-    json = dict(id = "abc123", symbol = symbol)
+    json = dict(symbol = symbol)
 
     if verbose:
         print(f"User url: {url}")
