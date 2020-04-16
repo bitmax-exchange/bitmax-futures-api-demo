@@ -23,18 +23,18 @@ def run(account, symbol, config, verbose):
 
     method = "order/all"
 
-    url = f"{host}/{group}/api/pro/v1/{account}/order/all"
+    url = f"{host}/{group}/api/pro/{account}/order/all"
 
-    params = dict(symbol = symbol)
+    json = dict(id = "abc123", symbol = symbol)
 
     if verbose:
         print(f"User url: {url}")
-        print(f"User params: {params}")
+        print(f"User json: {json}")
 
     ts = utc_timestamp()
     headers = make_auth_headers(ts, method, apikey, secret)
 
-    res = requests.delete(url, headers=headers, params=params)
+    res = requests.delete(url, headers=headers, json=json)
     pprint(parse_response(res))
 
 
