@@ -30,9 +30,9 @@ def run(config, symbol, price, qty, order_type, side, time_in_force, reduce_only
 
     url = f"{host}/{group}/api/pro/v1/futures/order"
 
-    ts = utc_timestamp()
+    ts = 1587099788537 # utc_timestamp()
     order = dict(
-        id = uuid32(),
+        id = 'abcd1234abcd1234', #uuid32(),
         time = ts,
         symbol = symbol,
         orderPrice = str(price),

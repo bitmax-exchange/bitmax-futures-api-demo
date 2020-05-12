@@ -28,7 +28,11 @@ def run(config, verbose):
         print(f"url = {url}")
 
     res = requests.get(url, headers=headers)
+    # import ipdb; ipdb.set_trace()
     pprint(parse_response(res))
+
+    if verbose:
+        pprint(res.headers)
 
 
 if __name__ == "__main__":

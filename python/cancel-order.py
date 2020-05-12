@@ -24,9 +24,10 @@ def run(config, account, order_id, symbol, resp_inst, verbose):
     secret = cfg['secret']
 
     url = f"{host}/{group}/api/pro/futures/order"
-    ts = utc_timestamp()
+    # ts = utc_timestamp()
+    ts = 1587099788537 # utc_timestamp()
     order = dict(
-        id = uuid32(),
+        id = 'abcd1234abcd1234',
         orderId = order_id,
         time = ts,
         symbol = symbol,

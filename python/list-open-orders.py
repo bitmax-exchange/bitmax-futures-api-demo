@@ -24,7 +24,6 @@ def run(config, verbose):
 
     if verbose:
         print(f"url: {url}")
-        print(f"order: {order}")
 
     ts = utc_timestamp()
     headers = make_auth_headers(ts, "order/open", apikey, secret)

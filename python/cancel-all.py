@@ -34,7 +34,7 @@ def run(account, symbol, config, verbose):
     ts = utc_timestamp()
     headers = make_auth_headers(ts, method, apikey, secret)
 
-    res = requests.delete(url, headers=headers, json=json)
+    res = requests.delete(url, headers=headers, json = None) #, json=json)
     pprint(parse_response(res))
 
 
